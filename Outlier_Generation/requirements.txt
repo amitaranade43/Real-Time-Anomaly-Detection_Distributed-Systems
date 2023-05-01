@@ -1,0 +1,4 @@
+pandas==1.5.2
+numpy==1.21.5
+scipy==1.7.3
+mqtt-client==1.6.0

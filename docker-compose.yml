@@ -1,0 +1,85 @@
+version: '3'
+services:
+  db-postgres:
+    image: postgres:latest
+    environment:
+      POSTGRES_PASSWORD: root
+    ports:
+      - "5433:5432"
+    volumes:
+      - /Users/stevemendis/Desktop/ADS_Final/db/abnormal.sql:/docker-entrypoint-initdb.d/abnormal.sql
+    networks:
+      - ads_network
+
+  mosquitto:
+    image: eclipse-mosquitto
+    container_name: mosquitto
+    restart: always
+    ports:
+      - "1883:1883"
+    volumes:
+      - /Users/stevemendis/Desktop/ADS_Final/mqtt/docker-mosquitto/mosquitto:/mosquitto/
+    networks:
+      - ads_network
+
+  arima:
+    image: arima-forecast
+    container_name: arima
+    restart: always
+    networks:
+      - ads_network
+    
+
+  ema:
+    image: bollinger-forecast
+    container_name: ema
+    restart: always
+    networks:
+      - ads_network
+    
+
+  outlier-gen:
+    image: outlier-generator
+    container_name: outlier-gen
+    restart: always
+    networks:
+      - ads_network
+    
+
+  choose-random:
+    image: choose-random-number
+    container_name: choose-random
+    restart: always
+    networks:
+      - ads_network
+    
+
+  ads-server:
+    image: ads-server
+    container_name: ads-server
+    restart: always
+    ports:
+      - "4000:4000"
+    networks:
+      - ads_network
+    
+
+  ads-client:
+    image: ads-client
+    container_name: ads-client
+    restart: always
+    ports:
+      - "3000:3000"
+    networks:
+      - ads_network
+    
+  k-means:
+    image: k-means
+    container_name: k-means
+    restart: always
+    networks:
+      - ads_network
+
+networks:
+  ads_network:
+    external: true

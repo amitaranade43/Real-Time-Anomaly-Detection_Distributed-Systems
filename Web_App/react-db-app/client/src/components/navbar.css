@@ -1,0 +1,25 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(to right, #283c86, #45a247);
+    color: white;
+    height: 50px;
+    padding: 0 20px;
+  }
+  
+  .navbar button {
+    background-color: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 0 10px;
+    text-transform: uppercase;
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .navbar button:hover {
+    transform: scale(1.1);
+  }
+  

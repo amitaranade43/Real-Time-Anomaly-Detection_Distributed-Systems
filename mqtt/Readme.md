@@ -1,0 +1,1 @@
+docker run -itd --name mosquitto -p 1883:1883 --network ads_network -v /Users/stevemendis/Desktop/ADS_Final/mqtt/docker-mosquitto/mosquitto:/mosquitto/ eclipse-mosquitto
